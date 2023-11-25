@@ -31,7 +31,7 @@ export async function callChain({ question, chatHistory }: callChainArgs) {
       {
         qaTemplate: QA_TEMPLATE,
         questionGeneratorTemplate: STANDALONE_QUESTION_TEMPLATE,
-        returnSourceDocuments: true, //default 4
+        // returnSourceDocuments: true, //default 4
         questionGeneratorChainOptions: {
           llm: nonStreamingModel,
         },
@@ -48,16 +48,17 @@ export async function callChain({ question, chatHistory }: callChainArgs) {
         },
         [handlers]
       )
-      .then(async (res) => {
-        const sourceDocuments = res?.sourceDocuments;
-        const firstTwoDocuments = sourceDocuments.slice(0, 2);
-        const pageContents = firstTwoDocuments.map(
-          ({ pageContent }: { pageContent: string }) => pageContent
-        );
-        console.log("already appended ", data);
-        data.append({
-          sources: pageContents,
-        });
+      .then(async () => {
+        // .then(async (res) => {
+        // const sourceDocuments = res?.sourceDocuments;
+        // const firstTwoDocuments = sourceDocuments.slice(0, 2);
+        // const pageContents = firstTwoDocuments.map(
+        //   ({ pageContent }: { pageContent: string }) => pageContent
+        // );
+        // console.log("already appended ", data);
+        // data.append({
+        //   sources: pageContents,
+        // });
         data.close();
       });
 
