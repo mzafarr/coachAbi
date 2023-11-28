@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   if (!question) {
     return NextResponse.json("Error: No question in the request", {
-      status: 400,
+      status: 401,
     });
   }
 
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error("Internal server error ", error);
     return NextResponse.json("Error: Something went wrong. Try again!", {
-      status: 500,
+      status: 401,
     });
   }
 }
